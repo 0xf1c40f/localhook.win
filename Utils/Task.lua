@@ -1,4 +1,4 @@
-local RunService = game:GetService("RunService")
+local RunService = Service.RunService
 local Connections = {}
 local ModuleReturn = {}
 
