@@ -4,16 +4,14 @@ local id    = game.PlaceId
 local dir   = 'localhook.win'
 local repo  = 'https://raw.githubusercontent.com/0xf1c40f/localhook.win/main/Games/'
 
-if not isfolder(dir) then
-  makefolder(dir)
-end
+makefolder(dir)
 
-local file = dir .. '/' .. id .. '.lua'
-local head = fetch({Url = repo .. id .. '.lua', Method = 'HEAD'})
+local file = dir..'/'..id..'.lua'
+local resp = fetch({Url = repo..id..'.lua', Method = 'GET'})
 
-if head.StatusCode == 200 then
-    if not isfile(file) then
-        writefile(file, fetch({Url = repo .. id .. '.lua'}).Body)
-    end
+if resp and resp.StatusCode == 200 and resp.Body and #resp.Body > 0 then
+  if not isfile(file) then 
+    writefile(file, resp.Body)
+  end
     loadfile(file)()
 end
