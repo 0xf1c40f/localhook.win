@@ -1,4 +1,4 @@
--- // LocalHook.win loader \\ --
+-- // localhook.win :fire: \\ --
 local fetch = (syn and syn.request) or http_request or (fluxus and fluxus.request) or request
 local id    = game.PlaceId
 local dir   = 'localhook.win'
