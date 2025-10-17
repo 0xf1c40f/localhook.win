@@ -1,5 +1,5 @@
--- loader/installer hhhhh :joy:
-local get   = game.HttpGet
+-- // LocalHook.win loader \\ --
+local fetch = (syn and syn.request) or http_request or (fluxus and fluxus.request) or request
 local id    = game.PlaceId
 local dir   = 'localhook.win'
 local repo  = 'https://raw.githubusercontent.com/0xf1c40f/localhook.win/main/Games/'
@@ -9,11 +9,11 @@ if not isfolder(dir) then
 end
 
 local file = dir .. '/' .. id .. '.lua'
-local ok, src = pcall(get, repo .. id .. '.lua')
+local head = fetch({Url = repo .. id .. '.lua', Method = 'HEAD'})
 
-if ok and src and #src > 0 then
-  if not isfile(file) then 
-    writefile(file, src) 
-  end
+if head.StatusCode == 200 then
+    if not isfile(file) then
+        writefile(file, fetch({Url = repo .. id .. '.lua'}).Body)
+    end
     loadfile(file)()
 end
