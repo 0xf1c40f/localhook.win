@@ -5,7 +5,7 @@ local dir   = 'localhook.win'
 local repo  = 'https://raw.githubusercontent.com/0xf1c40f/localhook.win/main/Games/'
 
 if not isfolder(dir) then
-makefolder(dir)
+  makefolder(dir)
 end
 
 local file = dir .. '/' .. id .. '.lua'
